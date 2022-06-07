@@ -1,7 +1,7 @@
 {
     "name": "Deep-Butterflies-Train",
     "container-image": {
-        "image": "cytomineuliege/s_deep-butterflies-train",
+        "image": "mytiix/s_deep-butterflies-train",
         "type": "singularity"
     },
     "description": "Training phase of the Deep-Butterflies Deep Learning approach",
