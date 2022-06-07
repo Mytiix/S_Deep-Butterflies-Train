@@ -1,0 +1,133 @@
+{
+    "name": "Deep-Butterflies-Train",
+    "container-image": {
+        "image": "cytomineuliege/s_deep-butterflies-train",
+        "type": "singularity"
+    },
+    "description": "Training phase of the Deep-Butterflies Deep Learning approach",
+    "schema-version": "cytomine-0.1",
+    "command-line": "python run.py [CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_TRAINING_IMAGES] [BUTTERFLY_SIDE] [CYTOMINE_ID_TERMS] [MODEL_EPOCHS] [MODEL_BATCH_SIZE] [MODEL_SIGMA] [MODEL_PROBABILITY_FUNCTION]",
+    "inputs": [
+        {
+        	"id": "cytomine_host",
+      		"value-key": "[@ID]",
+      		"command-line-flag": "--cytomine_host",
+      		"name": "Cytomine host",
+      		"set-by-server": true,
+      		"optional": false,
+      		"type": "String"
+    	},
+    	{
+			"id": "cytomine_public_key",
+			"value-key": "[@ID]",
+			"command-line-flag": "--@id",
+			"name": "Cytomine public key",
+			"set-by-server": true,
+			"optional": false,
+			"type": "String"
+    	},
+    	{
+    		"id": "cytomine_private_key",
+			"value-key": "[@ID]",
+			"command-line-flag": "--@id",
+			"name": "Cytomine private key",
+			"set-by-server": true,
+			"optional": false,
+			"type": "String"
+    	},
+		{
+			"id": "cytomine_id_project",
+			"value-key": "[@ID]",
+			"command-line-flag": "--@id",
+			"name": "Cytomine project ID",
+			"set-by-server": true,
+			"optional": false,
+			"type": "Number"
+    	},
+		{
+			"id": "cytomine_id_software",
+			"value-key": "[@ID]",
+			"command-line-flag": "--@id",
+			"name": "Cytomine software ID",
+			"set-by-server": true,
+			"optional": false,
+			"type": "Number"
+		},
+        {
+            "id": "cytomine_id_terms",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "name": "Cytomine terms IDs",
+            "set-by-server": false,
+            "optional": false,
+            "type": "ListDomain",
+            "uri": "/api/ontology/$currentOntology$/term.json",
+	        "uri-print-attribute": "name",
+	        "uri-sort-attribute": "name"
+        },
+        {
+            "id": "cytomine_training_images",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "name": "Cytomine image IDs",
+            "set-by-server": false,
+            "optional": false,
+            "type": "ListDomain",
+	        "uri": "/api/project/$currentProject$/imageinstance.json",
+	        "uri-print-attribute": "instanceFilename",
+	        "uri-sort-attribute": "instanceFilename"
+        },
+        {
+            "id": "butterfly_side",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "name": "Side of the butterfly",
+            "set-by-server": false,
+            "optional": false,
+            "default-value": "ventral",
+            "value-choices": ["ventral", "dorsal"],
+            "type": "String"
+        },
+        {
+            "id": "model_epochs",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "name": "Number of epochs",
+            "set-by-server": false,
+            "optional": false,
+            "default-value": 1000,
+            "type": "Number"
+        },
+        {
+            "id": "model_batch_size",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "name": "Size of batchs",
+            "set-by-server": false,
+            "optional": false,
+            "default-value": 4,
+            "type": "Number"
+        },
+        {
+            "id": "model_sigma",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "name": "Value of sigma in the probability function",
+            "set-by-server": false,
+            "optional": false,
+            "default-value": 4,
+            "type": "Number"
+        },
+        {
+            "id": "model_probability_function",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "name": "Type of probability function to describe the heatmap distribution",
+            "set-by-server": false,
+            "optional": false,
+            "default-value": "gaussian",
+            "value-choices": ["exponential", "gaussian"],
+            "type": "String"
+        }
+    ]
+}
