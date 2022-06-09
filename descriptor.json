@@ -6,7 +6,7 @@
     },
     "description": "Training phase of the Deep-Butterflies Deep Learning approach",
     "schema-version": "cytomine-0.1",
-    "command-line": "python run.py [CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_TRAINING_IMAGES] [BUTTERFLY_SIDE] [CYTOMINE_ID_TERMS] [MODEL_EPOCHS] [MODEL_BATCH_SIZE] [MODEL_SIGMA] [MODEL_PROBABILITY_FUNCTION]",
+    "command-line": "python run.py [CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_TRAINING_IMAGES] [CYTOMINE_ID_TERMS] [MODEL_EPOCHS] [MODEL_BATCH_SIZE] [MODEL_SIGMA] [MODEL_PROBABILITY_FUNCTION]",
     "inputs": [
         {
         	"id": "cytomine_host",
@@ -76,17 +76,6 @@
 	        "uri": "/api/project/$currentProject$/imageinstance.json",
 	        "uri-print-attribute": "instanceFilename",
 	        "uri-sort-attribute": "instanceFilename"
-        },
-        {
-            "id": "butterfly_side",
-            "value-key": "[@ID]",
-            "command-line-flag": "--@id",
-            "name": "Side of the butterfly",
-            "set-by-server": false,
-            "optional": false,
-            "default-value": "ventral",
-            "value-choices": ["ventral", "dorsal"],
-            "type": "String"
         },
         {
             "id": "model_epochs",

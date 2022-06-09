@@ -72,15 +72,23 @@ def main(argv):
 		terms_collection = TermCollection().fetch_with_filter("project", cj.parameters.cytomine_id_project)
 		terms_names_to_id = {term.name : term.id for term in terms_collection}
 
-		if cj.parameters.cytomine_id_terms == 'lm':
-			terms_names = [str(i).zfill(2) + '-v-lm' for i in range(1,15)] if cj.parameters.butterfly_side == 'ventral' else [str(i).zfill(2) + '-d-lm' for i in range(1,19)]
+		if cj.parameters.cytomine_id_terms == 'lm-v':
+			terms_names = [str(i).zfill(2) + '-v-lm' for i in range(1,15)]
 			terms_ids = [terms_names_to_id[name] for name in terms_names]
-		elif cj.parameters.cytomine_id_terms == 'slm':
-			terms_names = [str(i) + '-v-slm' for i in range(15,30)] if cj.parameters.butterfly_side == 'ventral' else [str(i) + '-d-slm' for i in range(19,45)]
+		elif cj.parameters.cytomine_id_terms == 'lm-d':
+			terms_names = [str(i).zfill(2) + '-d-lm' for i in range(1,19)]
 			terms_ids = [terms_names_to_id[name] for name in terms_names]
-		elif cj.parameters.cytomine_id_terms == 'all':
-			terms_names = [str(i).zfill(2) + '-v-lm' for i in range(1,15)] + [str(i) + '-v-slm' for i in range(15,30)] \
-			if cj.parameters.butterfly_side == 'ventral' else [str(i).zfill(2) + '-d-lm' for i in range(1,19)] + [str(i) + '-d-slm' for i in range(19,45)]
+		elif cj.parameters.cytomine_id_terms == 'slm-v':
+			terms_names = [str(i) + '-v-slm' for i in range(15,30)]
+			terms_ids = [terms_names_to_id[name] for name in terms_names]
+		elif cj.parameters.cytomine_id_terms == 'slm-d':
+			terms_names = [str(i) + '-d-slm' for i in range(19,45)]
+			terms_ids = [terms_names_to_id[name] for name in terms_names]
+		elif cj.parameters.cytomine_id_terms == 'all-v':
+			terms_names = [str(i).zfill(2) + '-v-lm' for i in range(1,15)] + [str(i) + '-v-slm' for i in range(15,30)]
+			terms_ids = [terms_names_to_id[name] for name in terms_names]
+		elif cj.parameters.cytomine_id_terms == 'all-d':
+			terms_names = [str(i).zfill(2) + '-d-lm' for i in range(1,19)] + [str(i) + '-d-slm' for i in range(19,45)]
 			terms_ids = [terms_names_to_id[name] for name in terms_names]
 		else:
 			terms_ids = [int(term_id) for term_id in cj.parameters.cytomine_id_terms.split(',')]
@@ -218,7 +226,6 @@ def main(argv):
 		# Save parameters for the prediction
 		parameters_hash = {}
 		parameters_hash['cytomine_id_terms'] = list(terms.keys())
-		parameters_hash['butterfly_side'] = cj.parameters.butterfly_side
 		parameters_hash['model_epochs'] = cj.parameters.model_epochs
 		parameters_hash['model_batch_size'] = cj.parameters.model_batch_size
 		parameters_hash['model_sigma'] = cj.parameters.model_sigma
