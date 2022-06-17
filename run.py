@@ -225,7 +225,7 @@ def main(argv):
 
 		# Save parameters for the prediction
 		parameters_hash = {}
-		parameters_hash['cytomine_id_terms'] = list(terms.keys())
+		parameters_hash['cytomine_id_terms'] = terms_ids
 		parameters_hash['model_epochs'] = cj.parameters.model_epochs
 		parameters_hash['model_batch_size'] = cj.parameters.model_batch_size
 		parameters_hash['model_sigma'] = cj.parameters.model_sigma
