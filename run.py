@@ -96,11 +96,21 @@ def main(argv):
 		# Select list of images corresponding to input
 		images = ImageInstanceCollection().fetch_with_filter("project", cj.parameters.cytomine_id_project)
 		image_id_to_object = {image.id : image for image in images}
-		if cj.parameters.cytomine_training_images == 'all':
-			tr_images = images
+		tr_images = []
+		if cj.parameters.cytomine_training_images == 'all-v':
+			for image in images:
+				if image.numberOfAnnotations != 0 and image.instanceFilename[10] == 'v':
+					tr_images.append(image)
+		elif cj.parameters.cytomine_training_images == 'all-d':
+			for image in images:
+				if image.numberOfAnnotations != 0 and image.instanceFilename[10] == 'd':
+					tr_images.append(image)
 		else:
 			images_ids = [int(image_id) for image_id in cj.parameters.cytomine_training_images.split(',')]
-			tr_images = [image_id_to_object[image_id] for image_id in images_ids]
+			for image_id in images_ids:
+				image = image_id_to_object[image_id]
+				if image.numberOfAnnotations != 0:
+					tr_images.append(image)
 
 
 		## 3. Download the images and the corresponding landmarks
